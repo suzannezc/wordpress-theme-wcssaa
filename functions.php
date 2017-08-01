@@ -14,7 +14,7 @@ add_action( 'wp_enqueue_scripts', 'wcssaa_enqueue_styles' );
 
 function customize_sports_archive_display ( $query ) {
 	if (($query->is_main_query()) && (is_tax('sports')) && !is_admin()) {
-		$query->set( 'post_type', 'game' );
+		$query->set( 'post_type', array('game', 'meet') );
 		$query->set( 'posts_per_page', '999' );
 		//$query->set( 'meta_key', 'game_date' );
 		//$query->set( 'orderby', 'meta_value' );
