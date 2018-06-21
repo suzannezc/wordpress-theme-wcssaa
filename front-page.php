@@ -50,6 +50,13 @@
 			<div id="featured-game" class="sub-menu-heading">
 				<span>Featured Game</span>
 			</div>
+			<?php // check if the post has a Post Thumbnail assigned to it.
+			//if ( has_post_thumbnail() ) {
+				//echo '<div class="featuredimage">';
+				//the_post_thumbnail('wrdsb-full-width');
+				//echo '</div>';
+			//}
+			?>
 			-->
 
 			<?php
@@ -167,6 +174,9 @@
 
 				<div id="news" class="sub-menu-heading">
 					<span>News</span>
+					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<h1><?php the_title(); ?></h1>
+<p><?php the_content(__('Read more'));?></p>
 				</div>
 
 				<div id="twitter" class="sub-menu-heading">
