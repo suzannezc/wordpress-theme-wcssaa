@@ -62,6 +62,8 @@
 			<a href="/leagues/<?php echo $league_id ?>/results">Results</a>
 			|
 			<a href="/leagues/<?php echo $league_id ?>/schedule">Schedule</a>
+			|
+			<a href="/leagues/<?php echo $league_id ?>/playoffs">Playoffs</a>
 		</p>
 			<!--
 			<div id="featured-game" class="sub-menu-heading">
