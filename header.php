@@ -51,7 +51,7 @@
 	<div class="container container-top">
 		<div class="header">
 			<div class="row">
-				<div class="col-md-8 col-sm-8">
+				<div class="col-md-10 col-sm-10">
 					<div id="logo" role="heading">
 						<a aria-labelledby="logo" href="<?php echo home_url(); ?>/"><span><?php echo get_bloginfo('name'); ?></span>
 							<p id="sitename"><?php echo get_bloginfo('name'); ?></p>
@@ -61,13 +61,13 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-4">
+				<div class="col-md-2 col-sm-2">
 					<div class="staff-shortcuts" role="complementary" aria-labelledby="staff-shortcut-list">
 						<div id="staff-shortcut-list">
-							<a href="#address">Contact</a> |
-							<a href="#safety">Safety</a> |
-							<a href="#volunteers">Volunteers</a> |
-							<a href="#about">About</a>
+							<div><a href="#address">Contact Info.</a></div>
+							<div><a href="#safety">Player Safety</a></div>
+							<div><a href="#volunteers">For Volunteers</a></div>
+							<div><a href="#about">About WCSSAA</a></div>
 						</div>
 					</div>
 				</div>

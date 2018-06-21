@@ -171,13 +171,33 @@
 
 		<div class="col-sm-3 col-lg-3" role="complementary">
 			<div class="sidebar-right widget-area" role="complementary">
-
-				<div id="news" class="sub-menu-heading">
-					<span>News</span>
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-<h1><?php the_title(); ?></h1>
-<p><?php the_content(__('Read more'));?></p>
-				</div>
+				<?php
+				$the_query = new WP_Query( array(
+					'category_name'  => 'news',
+					'posts_per_page' => 1,
+				));
+				if ( $the_query->have_posts() ) {
+					?>
+					<div id="news" class="sub-menu-heading">
+						<span>News</span>
+					</div>
+					<div class="textwidget">
+						<?php
+						$the_query->the_post();
+						echo '<h1>';
+						the_title();
+						echo '</h1>';
+						echo '<p>';
+						the_content( __( 'Read more' ) );
+						echo '</p>';
+						?>
+					</div>
+					<div style="text-align:right">
+						<a href="/news">View past news</a>
+					</div>
+					<?php
+				}
+				?>
 
 				<div id="twitter" class="sub-menu-heading">
 					<span>Follow Us</span>
