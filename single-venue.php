@@ -44,25 +44,11 @@
 
 			<?php
 			$post        = get_post();
-			$meet        = new WCSSAA_Meet( $post );
-			$league      = $meet->get_league();
-			$league_link = "/leagues/{$league->slug}";
-			$venue       = $meet->get_venue();
+			$venue       = new WCSSAA_Venue( $post );
 			$venue_link  = "/venues/{$venue->slug}"
 			?>
 
-			<h1><?php echo $league->title; ?></h1>
-			<p><a href="<?php echo $league_link; ?>">Back to <?php echo $league->title; ?></a></p>
-
-			<div id="meet-info" class="sub-menu-heading">
-				<span><?php echo $meet->title; ?></span>
-			</div>
-			<div style="text-align:right">
-				<?php echo $meet->meet_date; ?>
-				<?php echo $meet->meet_time; ?>
-				@
-				<?php echo $venue->title; ?>
-			</div>
+			<h1><?php echo $venue->title; ?></h1>
 
 			<?php setup_postdata( $post ); ?>
 			<?php the_content(); ?>

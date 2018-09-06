@@ -31,12 +31,11 @@
 				<div class="textwidget">
 					<ul>
 						<?php
-						$teams = get_terms( array(
-							'taxonomy'   => 'organizations',
-							'hide_empty' => false,
-						) );
-						foreach ( $teams as $team ) {
-							echo '<li><a href="/organizations/' . $team->slug . '">' . $team->name . '</a></li>';
+						$clubs = WCSSAA_Club_CPT::get_all_clubs();
+						foreach ( $clubs as $club ) {
+							if ( 'Bye' !== $club->title ) {
+								echo '<li><a href="/clubs/' . $club->slug . '">' . $club->title . '</a></li>';
+							}
 						}
 						?>
 					</ul>
@@ -60,6 +59,63 @@
 			-->
 
 			<?php
+			$meets = WCSSAA_Meet_CPT::get_meets_by_date( $today );
+			if ( count( $meets ) > 0 ) {
+				echo '<div id="todays-meets" class="sub-menu-heading">';
+				echo "<span>Today's Meets ( {$today} )</span>";
+				echo '</div>';
+				echo '<div class="textwidget">';
+				echo '<table width="100%">';
+
+				foreach ( $meets as $meet ) {
+					echo $meet->get_html_table_row( array(
+						'show_title' => false,
+						'show_sport' => true,
+						'show_date'  => false,
+						'show_time'  => true,
+						'show_edit'  => true,
+					));
+				}
+
+				echo '</table>';
+
+			}
+			if ( count( $meets ) < 10 ) {
+				$meets = WCSSAA_Meet_CPT::get_upcoming_meets();
+				if ( count( $meets ) > 0 ) {
+					echo '<div id="upcoming-meets" class="sub-menu-heading">';
+					echo "<span>Upcoming Meets</span>";
+					echo '</div>';
+					echo '<div class="textwidget">';
+					echo '<table width="100%">';
+
+					foreach ( $meets as $meet ) {
+						echo $meet->get_html_table_row( array(
+							'show_title' => false,
+							'show_sport' => true,
+							'show_date'  => true,
+							'show_time'  => true,
+							'show_edit'  => false,
+						));
+					}
+
+					echo '</table>';
+
+				} else {
+					echo '<div id="upcoming-meets" class="sub-menu-heading">';
+					echo "<span>Upcoming Meets</span>";
+					echo '</div>';
+					echo '<div class="textwidget">';
+					echo '<p>No upcoming meets found.';
+				}
+			}
+			//echo '<div style="text-align:right">';
+			//echo '<a href="/meets/all">View complete schedule of meets</a>';
+			//echo '</div>';
+			echo '</div>';
+			?>
+
+			<?php
 			$games = WCSSAA_Game_CPT::get_games_by_date( $today );
 			if ( count( $games ) > 0 ) {
 				echo '<div id="todays-games" class="sub-menu-heading">';
@@ -79,7 +135,8 @@
 
 				echo '</table>';
 
-			} else {
+			}
+			if ( count( $games ) < 10 ) {
 				$games = WCSSAA_Game_CPT::get_upcoming_games();
 				if ( count( $games ) > 0 ) {
 					echo '<div id="upcoming-games" class="sub-menu-heading">';
@@ -107,9 +164,66 @@
 					echo '<p>No upcoming games found.';
 				}
 			}
-			echo '<div style="text-align:right">';
-			echo '<a href="/games/all">View complete schedule</a>';
+			//echo '<div style="text-align:right">';
+			//echo '<a href="/games/all">View complete schedule of games</a>';
+			//echo '</div>';
 			echo '</div>';
+			?>
+
+			<?php
+			$meets = WCSSAA_Meet_CPT::get_meets_by_date( $yesterday );
+			if ( count( $meets ) > 0 ) {
+				echo '<div id="yesterdays-meets" class="sub-menu-heading">';
+				echo "<span>Yesterday's Meets ( {$yesterday} )</span>";
+				echo '</div>';
+				echo '<div class="textwidget">';
+				echo '<table width="100%">';
+
+				foreach ( $meets as $meet ) {
+					echo $meet->get_html_table_row( array(
+						'show_title' => false,
+						'show_sport' => true,
+						'show_date'  => false,
+						'show_time'  => true,
+						'show_edit'  => true,
+					));
+				}
+
+				echo '</table>';
+
+			}
+			if ( count( $meets ) < 10 ) {
+				$meets = WCSSAA_Meet_CPT::get_recent_meets();
+				if ( count( $meets ) > 0 ) {
+					echo '<div id="recent-meets" class="sub-menu-heading">';
+					echo '<span>Recent Meets</span>';
+					echo '</div>';
+					echo '<div class="textwidget">';
+					echo '<table width="100%">';
+
+					foreach ( $meets as $meet ) {
+						echo $meet->get_html_table_row( array(
+							'show_title' => false,
+							'show_sport' => true,
+							'show_date'  => true,
+							'show_time'  => false,
+							'show_edit'  => false,
+						));
+					}
+
+					echo '</table>';
+
+				} else {
+					echo '<div id="recent-meets" class="sub-menu-heading">';
+					echo '<span>Recent Meets</span>';
+					echo '</div>';
+					echo '<div class="textwidget">';
+					echo '<p>No recent meets found.';
+				}
+			}
+			//echo '<div style="text-align:right">';
+			//echo '<a href="/meets/all">View complete meet results</a>';
+			//echo '</div>';
 			echo '</div>';
 			?>
 
@@ -133,7 +247,8 @@
 
 				echo '</table>';
 
-			} else {
+			}
+			if ( count( $games ) < 10 ) {
 				$games = WCSSAA_Game_CPT::get_recent_games();
 				if ( count( $games ) > 0 ) {
 					echo '<div id="recent-games" class="sub-menu-heading">';
@@ -144,10 +259,11 @@
 
 					foreach ( $games as $game ) {
 						echo $game->get_html_table_row( array(
-							'show_sport' => true,
-							'show_date'  => true,
-							'show_time'  => false,
-							'show_edit'  => false,
+							'show_sport'   => true,
+							'show_date'    => true,
+							'show_time'    => false,
+							'show_scoring' => false,
+							'show_edit'    => false,
 						));
 					}
 
@@ -161,9 +277,9 @@
 					echo '<p>No recent games found.';
 				}
 			}
-			echo '<div style="text-align:right">';
-			echo '<a href="/games/all">View complete results</a>';
-			echo '</div>';
+			//echo '<div style="text-align:right">';
+			//echo '<a href="/games/all">View complete game results</a>';
+			//echo '</div>';
 			echo '</div>';
 			?>
 

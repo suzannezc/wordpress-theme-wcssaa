@@ -25,35 +25,9 @@
 			</div>
 
 			<div class="col-sm-6 col-md-3" role="region">
-				<h1 id="safety">Player Safety</h1>
-				<ul>
-					<li><a href="http://prestohost02.inmagic.com/Presto">OPHEA Safety Guidlines</a></li>
-					<li><a href="http://www.wrdsb.ca/wp-content/uploads/6012_-Prevention-and-Response-to-Student-Concussions.pdf">BP 6012 - Prevention and Response to Student Concussions</a></li>
-					<li><a href="http://www.wrdsb.ca/wp-content/uploads/AP1250-Concussion-Management.pdf">AP 1250 - Concussion Management</a></li>
-				</ul>
-
-				<h1 id="volunteers">For Volunteers:</h1>
-				<ul>
-					<li><a href="http://www.wcssaa.ca/volunteers/concussion-training-video/">Concussion Training Video</a></li>
-					<li><a href="http://www.wcssaa.ca/volunteers/concussion-training-slideshow/">Concussion Training Slideshow</a></li>
-					<li><a href="http://wcssaa.ca/wp-content/uploads/Proof-of-Training-for-Volunteer-Coaches-.pdf">Proof of Concussion Training for Volunteer Coaches Form</a></li>
-				</ul>
 			</div>
 
 			<div id="about" class="col-sm-6 col-md-3" role="region">
-				<h1>About WCSSAA</h1>
-				<h2>Contacts</h2>
-				<ul>
-					<li>Chair - Ryan Hume, Eastwood CI</li>
-					<li>Chair Elect - Emily Dixon, Queen Elizabeth PS</li>
-					<li>Past Chair - Josh Windsor, Eastwood CI</li>
-				</ul>
-				<h2>Governance</h2>
-				<ul>
-					<li>Meeting Dates</li>
-					<li><a href="http://www.wrdsb.ca/wp-content/uploads/4019_WCSSA.pdf">WRDSB Policy 4019 - WCSSAA</a></li>
-					<li><a href="https://www.wrdsb.ca/wp-content/uploads/1700-WCSSAA-Management-May-2017.pdf">WRDSB Procedure 1700 - WCSSAA Management</a></li>
-				</ul>
 			</div>
 
 			<div id="athletic-assoc" class="col-sm-6 col-md-3" role="region">

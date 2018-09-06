@@ -44,63 +44,31 @@
 		</div>
 
 		<div class="col-sm-10 col-lg-10">
-		<?php
-		$league_id                = get_the_ID();
-		$league_post              = get_post( $league_id );
-		$league                   = new WCSSAA_League( $post );
-		$league_name              = $league->title;
-		$league_slug              = $league->slug;
-		$league_scheduling_system = $league->get_scheduling_system();
-		?>
 
-		<h1><?php echo $league_name ?></h1>
-
-		<?php
-		if ( 'meet' === $league_scheduling_system) {
-			$meets = $league->get_meets();
-			echo '<div id="meets-schedule" class="sub-menu-heading">';
-			echo "<span>{$league_name} Schedule</span>";
-			echo '</div>';
-
-			if ( count( $meets ) > 0 ) {
-				echo '<div class="textwidget">';
-				echo '<table width="100%">';
-
-				foreach ( $meets as $meet ) {
-					echo $meet->get_html_table_row( array(
-						'show_title' => true,
-						'show_sport' => false,
-						'show_date'  => true,
-						'show_time'  => true,
-						'show_edit'  => true,
-					));
-				}
-
-				echo '</table>';
-				echo '</div>';
-
-			} else {
-				echo '<div class="textwidget">';
-				echo '<p>No upcoming meets found.';
-				echo '</div>';
-			}
-
-		} else {
+			<?php
+			$club_id   = get_the_ID();
+			$club_post = get_post( $club_id );
+			$club      = new WCSSAA_Club( $post );
+			$club_name = $club->title;
+			$club_slug = $club->slug;
 			?>
+
+			<h1><?php echo $club_name ?></h1>
+
 			<p>
-			<a href="/leagues/<?php echo $league_slug ?>">Home</a>
+			<a href="/clubs/<?php echo $club_slug ?>">Home</a>
 			| 
-			<a href="/leagues/<?php echo $league_id ?>/standings">Standings</a>
+			<a href="/clubs/<?php echo $club_id ?>/teams">Sports</a>
 			| 
-			<a href="/leagues/<?php echo $league_id ?>/results">Results</a>
+			<a href="/clubs/<?php echo $club_id ?>/standings">Standings</a>
+			| 
+			<a href="/clubs/<?php echo $club_id ?>/results">Results</a>
 			|
-			<a href="/leagues/<?php echo $league_id ?>/schedule">Schedule</a>
-			|
-			<a href="/leagues/<?php echo $league_id ?>/playoffs">Playoffs</a>
+			<a href="/clubs/<?php echo $club_id ?>/schedule">Schedule</a>
 			</p>
 
 			<?php
-			$games = WCSSAA_Game_CPT::get_games_by_date( $today, $league_id );
+			$games = $club->get_games_by_date( $today );
 			if ( count( $games ) > 0 ) {
 				echo '<div id="todays-games" class="sub-menu-heading">';
 				echo "<span>Today's Games ( {$today} )</span>";
@@ -110,7 +78,7 @@
 
 				foreach ( $games as $game ) {
 					echo $game->get_html_table_row( array(
-						'show_sport' => false,
+						'show_sport' => true,
 						'show_date'  => false,
 						'show_time'  => true,
 						'show_edit'  => true,
@@ -120,7 +88,7 @@
 				echo '</table>';
 
 			} else {
-				$games = WCSSAA_Game_CPT::get_upcoming_games( $league_id );
+				$games = $club->get_game_schedule();
 				if ( count( $games ) > 0 ) {
 					echo '<div id="upcoming-games" class="sub-menu-heading">';
 					echo "<span>Upcoming Games</span>";
@@ -130,7 +98,7 @@
 
 					foreach ( $games as $game ) {
 						echo $game->get_html_table_row( array(
-							'show_sport' => false,
+							'show_sport' => true,
 							'show_date'  => true,
 							'show_time'  => true,
 							'show_edit'  => false,
@@ -146,13 +114,14 @@
 					echo '<div class="textwidget">';
 					echo '<p>No upcoming games found.';
 				}
+
 			}
-			echo '<div style="text-align:right">';
-			echo "<a href=\"/leagues/{$league_id}/schedule\">View complete schedule for {$league_name}</a>";
-			echo '</div>';
+			//echo '<div style="text-align:right">';
+			//echo "<a href=\"/leagues/{$league_id}/schedule\">View complete schedule for {$league_name}</a>";
+			//echo '</div>';
 			echo '</div>';
 
-			$games = WCSSAA_Game_CPT::get_games_by_date( $yesterday, $league_id );
+			$games = $club->get_games_by_date( $yesterday );
 			if ( count( $games ) > 0 ) {
 				echo '<div id="yesterdays-games" class="sub-menu-heading">';
 				echo "<span>Yesterday's Games ( {$yesterday} )</span>";
@@ -173,7 +142,7 @@
 				echo '</table>';
 
 			} else {
-				$games = WCSSAA_Game_CPT::get_recent_games( $league_id );
+				$games = $club->get_recent_games();
 				if ( count( $games ) > 0 ) {
 					echo '<div id="recent-games" class="sub-menu-heading">';
 					echo '<span>Recent Games</span>';
@@ -201,12 +170,11 @@
 					echo '<p>No recent games found.';
 				}
 			}
-			echo '<div style="text-align:right">';
-			echo "<a href=\"/leagues/{$league_id}/results\">View complete results for {$league_name}</a>";
+			//echo '<div style="text-align:right">';
+			//echo "<a href=\"/leagues/{$league_id}/results\">View complete results for {$league_name}</a>";
+			//echo '</div>';
 			echo '</div>';
-			echo '</div>';
-		}
-		?>
+			?>
 
 		</div> <!-- end content area -->
 	</div> <!-- end row -->

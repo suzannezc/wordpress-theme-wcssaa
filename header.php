@@ -64,10 +64,11 @@
 				<div class="col-md-2 col-sm-2">
 					<div class="staff-shortcuts" role="complementary" aria-labelledby="staff-shortcut-list">
 						<div id="staff-shortcut-list">
+							<div><a href="/safety">Player Safety</a></div>
+							<div><a href="/rules">Rules</a>
+							<div><a href="/volunteers">For Volunteers</a></div>
+							<div><a href="/about">About WCSSAA</a></div>
 							<div><a href="#address">Contact Info.</a></div>
-							<div><a href="#safety">Player Safety</a></div>
-							<div><a href="#volunteers">For Volunteers</a></div>
-							<div><a href="#about">About WCSSAA</a></div>
 						</div>
 					</div>
 				</div>

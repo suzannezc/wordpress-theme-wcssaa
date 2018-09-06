@@ -17,3 +17,12 @@
 .navbar {
     min-height: 6px;
 }
+
+.update-scoring-form {
+    display: none;
+    margin-top: 1em;
+}
+
+.update-scoring-response {
+    margin-top: 1em;
+}
