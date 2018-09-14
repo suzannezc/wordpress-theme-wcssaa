@@ -57,14 +57,14 @@
         $league                   = new League($post);
         $league_name              = $league->title;
         $league_slug              = $league->slug;
-        $league_scheduling_system = $league->get_scheduling_system();
+        $league_scheduling_system = $league->getSchedulingSystem();
         ?>
 
         <h1><?php echo $league_name ?></h1>
 
         <?php
         if ('meet' === $league_scheduling_system) {
-            $meets = $league->get_meets();
+            $meets = $league->getMeets();
             echo '<div id="meets-schedule" class="sub-menu-heading">';
             echo "<span>{$league_name} Schedule</span>";
             echo '</div>';
@@ -74,7 +74,7 @@
                 echo '<table width="100%">';
 
                 foreach ($meets as $meet) {
-                    echo $meet->get_html_table_row(array(
+                    echo $meet->getHTMLTableRow(array(
                         'show_title' => true,
                         'show_sport' => false,
                         'show_date'  => true,
@@ -105,7 +105,7 @@
             </p>
 
             <?php
-            $games = GameCPT::get_games_by_date($today, $league_id);
+            $games = Game::findByDate($today, $league_id);
             if (count($games) > 0) {
                 echo '<div id="todays-games" class="sub-menu-heading">';
                 echo "<span>Today's Games ( {$today} )</span>";
@@ -114,7 +114,7 @@
                 echo '<table width="100%">';
 
                 foreach ($games as $game) {
-                    echo $game->get_html_table_row(array(
+                    echo $game->getHTMLTableRow(array(
                         'show_sport' => false,
                         'show_date'  => false,
                         'show_time'  => true,
@@ -124,7 +124,7 @@
 
                 echo '</table>';
             } else {
-                $games = GameCPT::get_upcoming_games($league_id);
+                $games = Game::findUpcoming($league_id);
                 if (count($games) > 0) {
                     echo '<div id="upcoming-games" class="sub-menu-heading">';
                     echo "<span>Upcoming Games</span>";
@@ -133,7 +133,7 @@
                     echo '<table width="100%">';
 
                     foreach ($games as $game) {
-                        echo $game->get_html_table_row(array(
+                        echo $game->getHTMLTableRow(array(
                             'show_sport' => false,
                             'show_date'  => true,
                             'show_time'  => true,
@@ -155,7 +155,7 @@
             echo '</div>';
             echo '</div>';
 
-            $games = GameCPT::get_games_by_date($yesterday, $league_id);
+            $games = Game::findByDate($yesterday, $league_id);
             if (count($games) > 0) {
                 echo '<div id="yesterdays-games" class="sub-menu-heading">';
                 echo "<span>Yesterday's Games ( {$yesterday} )</span>";
@@ -164,7 +164,7 @@
                 echo '<table width="100%">';
 
                 foreach ($games as $game) {
-                    echo $game->get_html_table_row(array(
+                    echo $game->getHTMLTableRow(array(
                         'show_sport'   => false,
                         'show_date'    => false,
                         'show_time'    => true,
@@ -175,7 +175,7 @@
 
                 echo '</table>';
             } else {
-                $games = GameCPT::get_recent_games($league_id);
+                $games = Game::findRecent($league_id);
                 if (count($games) > 0) {
                     echo '<div id="recent-games" class="sub-menu-heading">';
                     echo '<span>Recent Games</span>';
@@ -184,7 +184,7 @@
                     echo '<table width="100%">';
 
                     foreach ($games as $game) {
-                        echo $game->get_html_table_row(array(
+                        echo $game->getHTMLTableRow(array(
                             'show_sport'   => false,
                             'show_date'    => true,
                             'show_time'    => false,

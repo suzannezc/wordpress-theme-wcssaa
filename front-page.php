@@ -75,7 +75,7 @@
                 echo '<table width="100%">';
 
                 foreach ($meets as $meet) {
-                    echo $meet->get_html_table_row(array(
+                    echo $meet->getHTMLTableRow(array(
                         'show_title' => false,
                         'show_sport' => true,
                         'show_date'  => false,
@@ -97,7 +97,7 @@
                     echo '<table width="100%">';
 
                     foreach ($meets as $meet) {
-                        echo $meet->get_html_table_row(array(
+                        echo $meet->getHTMLTableRow(array(
                             'show_title' => false,
                             'show_sport' => true,
                             'show_date'  => true,
@@ -121,7 +121,7 @@
             ?>
 
             <?php
-            $games = GameCPT::get_games_by_date($today);
+            $games = Game::findByDate($today);
             if (count($games) > 0) {
                 echo '<div id="todays-games" class="sub-menu-heading">';
                 echo "<span>Today's Games ( {$today} )</span>";
@@ -130,7 +130,7 @@
                 echo '<table width="100%">';
 
                 foreach ($games as $game) {
-                    echo $game->get_html_table_row(array(
+                    echo $game->getHTMLTableRow(array(
                         'show_sport' => true,
                         'show_date'  => false,
                         'show_time'  => true,
@@ -142,7 +142,7 @@
             }
 
             if (count($games) < 10) {
-                $games = GameCPT::get_upcoming_games();
+                $games = Game::findUpcoming();
                 if (count($games) > 0) {
                     echo '<div id="upcoming-games" class="sub-menu-heading">';
                     echo "<span>Upcoming Games</span>";
@@ -151,7 +151,7 @@
                     echo '<table width="100%">';
 
                     foreach ($games as $game) {
-                        echo $game->get_html_table_row(array(
+                        echo $game->getHTMLTableRow(array(
                             'show_sport' => true,
                             'show_date'  => true,
                             'show_time'  => true,
@@ -184,7 +184,7 @@
                 echo '<table width="100%">';
 
                 foreach ($meets as $meet) {
-                    echo $meet->get_html_table_row(array(
+                    echo $meet->getHTMLTableRow(array(
                         'show_title' => false,
                         'show_sport' => true,
                         'show_date'  => false,
@@ -206,7 +206,7 @@
                     echo '<table width="100%">';
 
                     foreach ($meets as $meet) {
-                        echo $meet->get_html_table_row(array(
+                        echo $meet->getHTMLTableRow(array(
                             'show_title' => false,
                             'show_sport' => true,
                             'show_date'  => true,
@@ -231,7 +231,7 @@
             ?>
 
             <?php
-            $games = GameCPT::get_games_by_date($yesterday);
+            $games = Game::findByDate($yesterday);
             if (count($games) > 0) {
                 echo '<div id="yesterdays-games" class="sub-menu-heading">';
                 echo "<span>Yesterday's Games ( {$yesterday} )</span>";
@@ -240,7 +240,7 @@
                 echo '<table width="100%">';
 
                 foreach ($games as $game) {
-                    echo $game->get_html_table_row(array(
+                    echo $game->getHTMLTableRow(array(
                         'show_sport' => true,
                         'show_date'  => false,
                         'show_time'  => true,
@@ -252,7 +252,7 @@
             }
 
             if (count($games) < 10) {
-                $games = GameCPT::get_recent_games();
+                $games = Game::findRecent();
                 if (count($games) > 0) {
                     echo '<div id="recent-games" class="sub-menu-heading">';
                     echo '<span>Recent Games</span>';
@@ -261,7 +261,7 @@
                     echo '<table width="100%">';
 
                     foreach ($games as $game) {
-                        echo $game->get_html_table_row(array(
+                        echo $game->getHTMLTableRow(array(
                             'show_sport'   => true,
                             'show_date'    => true,
                             'show_time'    => false,

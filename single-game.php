@@ -51,9 +51,9 @@
             <?php
             $post        = get_post();
             $game        = new Game($post);
-            $league      = $game->get_league();
+            $league      = $game->getLeague();
             $league_link = "/leagues/{$league->slug}";
-            $venue       = $game->get_venue();
+            $venue       = $game->getVenue();
             $venue_link  = "/venues/{$venue->slug}"
             ?>
 

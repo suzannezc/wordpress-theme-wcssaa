@@ -51,9 +51,9 @@
             <?php
             $post        = get_post();
             $meet        = new Meet($post);
-            $league      = $meet->get_league();
+            $league      = $meet->getLeague();
             $league_link = "/leagues/{$league->slug}";
-            $venue       = $meet->get_venue();
+            $venue       = $meet->getVenue();
             $venue_link  = "/venues/{$venue->slug}"
             ?>
 

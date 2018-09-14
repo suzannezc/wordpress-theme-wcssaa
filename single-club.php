@@ -73,7 +73,7 @@
             </p>
 
             <?php
-            $games = $club->get_games_by_date($today);
+            $games = $club->getGamesByDate($today);
             if (count($games) > 0) {
                 echo '<div id="todays-games" class="sub-menu-heading">';
                 echo "<span>Today's Games ( {$today} )</span>";
@@ -82,7 +82,7 @@
                 echo '<table width="100%">';
 
                 foreach ($games as $game) {
-                    echo $game->get_html_table_row(array(
+                    echo $game->getHTMLTableRow(array(
                         'show_sport' => true,
                         'show_date'  => false,
                         'show_time'  => true,
@@ -92,7 +92,7 @@
 
                 echo '</table>';
             } else {
-                $games = $club->get_game_schedule();
+                $games = $club->getGameSchedule();
                 if (count($games) > 0) {
                     echo '<div id="upcoming-games" class="sub-menu-heading">';
                     echo "<span>Upcoming Games</span>";
@@ -101,7 +101,7 @@
                     echo '<table width="100%">';
 
                     foreach ($games as $game) {
-                        echo $game->get_html_table_row(array(
+                        echo $game->getHTMLTableRow(array(
                             'show_sport' => true,
                             'show_date'  => true,
                             'show_time'  => true,
@@ -123,7 +123,7 @@
             //echo '</div>';
             echo '</div>';
 
-            $games = $club->get_games_by_date($yesterday);
+            $games = $club->getGamesByDate($yesterday);
             if (count($games) > 0) {
                 echo '<div id="yesterdays-games" class="sub-menu-heading">';
                 echo "<span>Yesterday's Games ( {$yesterday} )</span>";
@@ -132,7 +132,7 @@
                 echo '<table width="100%">';
 
                 foreach ($games as $game) {
-                    echo $game->get_html_table_row(array(
+                    echo $game->getHTMLTableRow(array(
                         'show_sport'   => false,
                         'show_date'    => false,
                         'show_time'    => true,
@@ -143,7 +143,7 @@
 
                 echo '</table>';
             } else {
-                $games = $club->get_recent_games();
+                $games = $club->getGamesRecent();
                 if (count($games) > 0) {
                     echo '<div id="recent-games" class="sub-menu-heading">';
                     echo '<span>Recent Games</span>';
@@ -152,7 +152,7 @@
                     echo '<table width="100%">';
 
                     foreach ($games as $game) {
-                        echo $game->get_html_table_row(array(
+                        echo $game->getHTMLTableRow(array(
                             'show_sport'   => false,
                             'show_date'    => true,
                             'show_time'    => false,
