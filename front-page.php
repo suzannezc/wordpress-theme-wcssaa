@@ -66,7 +66,7 @@
             -->
 
             <?php
-            $meets = MeetCPT::get_meets_by_date($today);
+            $meets = Meet::findByDate($today);
             if (count($meets) > 0) {
                 echo '<div id="todays-meets" class="sub-menu-heading">';
                 echo "<span>Today's Meets ( {$today} )</span>";
@@ -88,7 +88,7 @@
             }
 
             if (count($meets) < 10) {
-                $meets = MeetCPT::get_upcoming_meets();
+                $meets = Meet::findByDate();
                 if (count($meets) > 0) {
                     echo '<div id="upcoming-meets" class="sub-menu-heading">';
                     echo "<span>Upcoming Meets</span>";
@@ -175,7 +175,7 @@
             ?>
 
             <?php
-            $meets = MeetCPT::get_meets_by_date($yesterday);
+            $meets = Meet::findByDate($yesterday);
             if (count($meets) > 0) {
                 echo '<div id="yesterdays-meets" class="sub-menu-heading">';
                 echo "<span>Yesterday's Meets ( {$yesterday} )</span>";
@@ -197,7 +197,7 @@
             }
 
             if (count($meets) < 10) {
-                $meets = MeetCPT::get_recent_meets();
+                $meets = Meet::findRecent();
                 if (count($meets) > 0) {
                     echo '<div id="recent-meets" class="sub-menu-heading">';
                     echo '<span>Recent Meets</span>';
