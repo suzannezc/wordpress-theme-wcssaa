@@ -1,7 +1,6 @@
 <?php
-    use \WRDSB\WCSSAA\Modules\WCSSAA\CustomPostTypes\LeagueCPT as LeagueCPT;
-    use \WRDSB\WCSSAA\Modules\WCSSAA\CustomPostTypes\ClubCPT as ClubCPT;
-    use \WRDSB\WCSSAA\Modules\WCSSAA\Model\Club as Club;
+    use \WRDSB\WCSSAA\CustomPostTypes\LeagueCPT as LeagueCPT;
+    use \WRDSB\WCSSAA\Model\Club as Club;
 ?>
 
 <?php get_header(); ?>
@@ -20,7 +19,7 @@
                 <div class="textwidget">
                     <ul>
                         <?php
-                        $leagues = LeagueCPT::get_leagues_by_season('fall');
+                        $leagues = League::findBySeason('fall');
                         foreach ($leagues as $league) {
                             echo '<li><a href="/leagues/' . $league->slug . '">' . $league->title . '</a></li>';
                         }
@@ -37,7 +36,7 @@
                 <div class="textwidget">
                     <ul>
                         <?php
-                        $clubs = ClubCPT::get_all_clubs();
+                        $clubs = Club::findAll();
                         foreach ($clubs as $club) {
                             if ('Bye' !== $club->title) {
                                 echo '<li><a href="/clubs/' . $club->slug . '">' . $club->title . '</a></li>';
