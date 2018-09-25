@@ -108,9 +108,9 @@ while ( have_posts() ) : the_post();
 			</tr>
 	<?php } else { ?>
 			<tr>
-				<td><a href="<?php echo get_permalink(); ?>"><?php echo substr(get_the_title(), 10); ?></a></td>
+				<td><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></td>
 				<td><?php echo $game_date; ?> <?php echo $game_time; ?> @ <a href="<?php echo $game_venue_link; ?>"><?php echo $game_venue->name; ?></a></td>
-				<td><?php edit_post_link(__('Add/Edit Results'));?>
+				<td><?php edit_post_link(__('Add/Edit Results'));?></td>
 			</tr>
 	<?php } ?>
 	<?php $new_date = false; ?>
