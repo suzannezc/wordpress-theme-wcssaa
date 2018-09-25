@@ -45,15 +45,15 @@
 
 		<div class="col-sm-10 col-lg-10">
 		<?php
-		$league_id                = get_the_ID();
-		$league_post              = get_post( $league_id );
-		$league                   = new WCSSAA_League( $post );
-		$league_name              = $league->title;
-		$league_slug              = $league->slug;
+		$team_id                = get_the_ID();
+		$team_post              = get_post( $team_id );
+		$team                   = new WCSSAA_Team( $team_post );
+		$team_name              = $team->title;
+		$team_slug              = $team->slug;
 		$league_scheduling_system = $league->get_scheduling_system();
 		?>
 
-		<h1><?php echo $league_name ?></h1>
+		<h1><?php echo $team_name ?></h1>
 
 		<?php
 		if ( 'meet' === $league_scheduling_system) {
@@ -88,15 +88,15 @@
 		} else {
 			?>
 			<p>
-			<a href="/leagues/<?php echo $league_slug ?>">Home</a>
+			<a href="/teams/<?php echo $team_slug ?>">Home</a>
 			| 
-			<a href="/leagues/<?php echo $league_id ?>/standings">Standings</a>
+			<a href="/teams/<?php echo $team_id ?>/standings">Standings</a>
 			| 
-			<a href="/leagues/<?php echo $league_id ?>/results">Results</a>
+			<a href="/teams/<?php echo $team_id ?>/results">Results</a>
 			|
-			<a href="/leagues/<?php echo $league_id ?>/schedule">Schedule</a>
+			<a href="/teams/<?php echo $team_id ?>/schedule">Schedule</a>
 			|
-			<a href="/leagues/<?php echo $league_id ?>/playoffs">Playoffs</a>
+			<a href="/teams/<?php echo $team_id ?>/playoffs">Playoffs</a>
 			</p>
 
 			<?php

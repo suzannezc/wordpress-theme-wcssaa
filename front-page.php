@@ -5,45 +5,7 @@
 
 <div class="container">
 	<div class="row">
-
-		<div class="col-sm-2 col-lg-2" role="complementary">
-			<div class="sidebar-left widget-area" role="complementary">
-				<div id="sports-list" class="sub-menu-heading">
-					<span>Sports</span>
-				</div>
-				<div class="textwidget">
-					<ul>
-						<?php
-						$leagues = WCSSAA_League_CPT::get_leagues_by_season( 'fall' );
-						foreach ( $leagues as $league ) {
-							echo '<li><a href="/leagues/' . $league->slug . '">' . $league->title . '</a></li>';
-						}
-						?>
-					</ul>
-					<div style="text-align:right">
-						<a href="/leagues/all">View all Sports</a>
-					</div>
-				</div>
-
-				<div id="teams-list" class="sub-menu-heading">
-					<span>Teams</span>
-				</div>
-				<div class="textwidget">
-					<ul>
-						<?php
-						$clubs = WCSSAA_Club_CPT::get_all_clubs();
-						foreach ( $clubs as $club ) {
-							if ( 'Bye' !== $club->title ) {
-								echo '<li><a href="/clubs/' . $club->slug . '">' . $club->title . '</a></li>';
-							}
-						}
-						?>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-sm-7 col-lg-7">
+		<div class="col-sm-9 col-lg-9">
 			<?php
 			$meets = WCSSAA_Meet_CPT::get_meets_by_date( $today );
 			if ( count( $meets ) > 0 ) {
