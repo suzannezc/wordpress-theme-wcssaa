@@ -133,12 +133,8 @@
         <div class="col-md-3 col-sm-4">
           <div class="staff-shortcuts" role="complementary" aria-labelledby="staff-shortcut-list">
             <div id="staff-shortcut-list">
-              <a href="#address">Contact Information</a>
-            </div>
-            <div class="searchbox" role="search" aria-labelledby="search">
-              <form action="<?php echo home_url(); ?>/" method="get">
-                <input aria-label="Search" type="text" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="Search" />
-              </form>
+              <div><a href="/about">About WCSSAA</a></div>
+              <div><a href="#address">Contact Info.</a></div>
             </div>
           </div>
         </div>
