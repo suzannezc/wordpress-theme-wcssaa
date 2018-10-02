@@ -1,70 +1,16 @@
 <?php
-    use \WRDSB\WCSSAA\Model\Club as Club;
-    use \WRDSB\WCSSAA\CustomPostTypes\GameCPT as GameCPT;
-    use \WRDSB\WCSSAA\CustomPostTypes\LeagueCPT as LeagueCPT;
-    use \WRDSB\WCSSAA\CustomPostTypes\MeetCPT as MeetCPT;
+    use \WRDSB\WCSSAA\Model\Game as Game;
+    use \WRDSB\WCSSAA\Model\Meet as Meet;
 ?>
 
 <?php get_header(); ?>
 
-<?php $today = date('Y-m-d'); ?>
+<?php $today = current_time('Y-m-d'); ?>
 <?php $yesterday = date('Y-m-d', strtotime("last weekday {$today}")); ?>
 
 <div class="container">
     <div class="row">
-
-        <div class="col-sm-2 col-lg-2" role="complementary">
-            <div class="sidebar-left widget-area" role="complementary">
-                <div id="sports-list" class="sub-menu-heading">
-                    <span>Sports</span>
-                </div>
-                <div class="textwidget">
-                    <ul>
-                        <?php
-                        $leagues = League::findBySeason('fall');
-                        foreach ($leagues as $league) {
-                            echo '<li><a href="/leagues/' . $league->slug . '">' . $league->title . '</a></li>';
-                        }
-                        ?>
-                    </ul>
-                    <div style="text-align:right">
-                        <a href="/leagues/all">View all Sports</a>
-                    </div>
-                </div>
-
-                <div id="teams-list" class="sub-menu-heading">
-                    <span>Teams</span>
-                </div>
-                <div class="textwidget">
-                    <ul>
-                        <?php
-                        $clubs = Club::findAll();
-                        foreach ($clubs as $club) {
-                            if ('Bye' !== $club->title) {
-                                echo '<li><a href="/clubs/' . $club->slug . '">' . $club->title . '</a></li>';
-                            }
-                        }
-                        ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-7 col-lg-7">
-
-            <!--
-            <div id="featured-game" class="sub-menu-heading">
-                <span>Featured Game</span>
-            </div>
-            <?php // check if the post has a Post Thumbnail assigned to it.
-            //if ( has_post_thumbnail() ) {
-                //echo '<div class="featuredimage">';
-                //the_post_thumbnail('wrdsb-full-width');
-                //echo '</div>';
-            //}
-            ?>
-            -->
-
+        <div class="col-sm-9 col-lg-9">
             <?php
             $meets = Meet::findByDate($today);
             if (count($meets) > 0) {
@@ -85,10 +31,11 @@
                 }
 
                 echo '</table>';
+                echo '</div>';
             }
 
             if (count($meets) < 10) {
-                $meets = Meet::findByDate();
+                $meets = Meet::findUpcoming();
                 if (count($meets) > 0) {
                     echo '<div id="upcoming-meets" class="sub-menu-heading">';
                     echo "<span>Upcoming Meets</span>";
@@ -106,18 +53,19 @@
                         ));
                     }
                     echo '</table>';
+                    echo '</div>';
                 } else {
                     echo '<div id="upcoming-meets" class="sub-menu-heading">';
                     echo "<span>Upcoming Meets</span>";
                     echo '</div>';
                     echo '<div class="textwidget">';
                     echo '<p>No upcoming meets found.';
+                    echo '</div>';
                 }
             }
             //echo '<div style="text-align:right">';
             //echo '<a href="/meets/all">View complete schedule of meets</a>';
             //echo '</div>';
-            echo '</div>';
             ?>
 
             <?php
@@ -139,6 +87,7 @@
                 }
 
                 echo '</table>';
+                echo '</div>';
             }
 
             if (count($games) < 10) {
@@ -160,18 +109,19 @@
                     }
 
                     echo '</table>';
+                    echo '</div>';
                 } else {
                     echo '<div id="upcoming-games" class="sub-menu-heading">';
                     echo "<span>Upcoming Games</span>";
                     echo '</div>';
                     echo '<div class="textwidget">';
                     echo '<p>No upcoming games found.';
+                    echo '</div>';
                 }
             }
             //echo '<div style="text-align:right">';
             //echo '<a href="/games/all">View complete schedule of games</a>';
             //echo '</div>';
-            echo '</div>';
             ?>
 
             <?php
@@ -192,8 +142,8 @@
                         'show_edit'  => true,
                     ));
                 }
-
                 echo '</table>';
+                echo '</div>';
             }
 
             if (count($meets) < 10) {
@@ -214,20 +164,20 @@
                             'show_edit'  => false,
                         ));
                     }
-
                     echo '</table>';
+                    echo '</div>';
                 } else {
                     echo '<div id="recent-meets" class="sub-menu-heading">';
                     echo '<span>Recent Meets</span>';
                     echo '</div>';
                     echo '<div class="textwidget">';
                     echo '<p>No recent meets found.';
+                    echo '</div>';
                 }
             }
             //echo '<div style="text-align:right">';
             //echo '<a href="/meets/all">View complete meet results</a>';
             //echo '</div>';
-            echo '</div>';
             ?>
 
             <?php
@@ -247,8 +197,8 @@
                         'show_edit'  => true,
                     ));
                 }
-
                 echo '</table>';
+                echo '</div>';
             }
 
             if (count($games) < 10) {
@@ -271,18 +221,19 @@
                     }
 
                     echo '</table>';
+                    echo '</div>';
                 } else {
                     echo '<div id="recent-games" class="sub-menu-heading">';
                     echo '<span>Recent Games</span>';
                     echo '</div>';
                     echo '<div class="textwidget">';
                     echo '<p>No recent games found.';
+                    echo '</div>';
                 }
             }
             //echo '<div style="text-align:right">';
             //echo '<a href="/games/all">View complete game results</a>';
             //echo '</div>';
-            echo '</div>';
             ?>
 
         </div> <!-- end content area -->
@@ -328,8 +279,7 @@
 
             </div>
         </div>
-
-</div> <!-- end row -->
+    </div> <!-- end row -->
 </div> <!-- end container -->
 
 <?php
