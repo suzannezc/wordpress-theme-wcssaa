@@ -15,16 +15,23 @@
         <?php
         $league_id                = get_the_ID();
         $league_post              = get_post($league_id);
-        $league                   = new League($post);
+        $league                   = new League($league_post);
         $league_name              = $league->title;
         $league_slug              = $league->slug;
         $league_scheduling_system = $league->getSchedulingSystem();
+        $schedule_url             = $league->getScheduleURL();
         ?>
 
         <h1><?php echo $league_name ?></h1>
 
         <?php
         if ('meet' === $league_scheduling_system) {
+            if ($schedule_url) {
+                echo '<p>';
+                echo '<a href="'. $schedule_url .'">Printable Schedule</a>';
+                echo '<p>';
+            }
+
             $meets = $league->getMeets();
             echo '<div id="meets-schedule" class="sub-menu-heading">';
             echo "<span>{$league_name} Schedule</span>";
@@ -63,6 +70,12 @@
             <a href="/leagues/<?php echo $league_id ?>/schedule">Schedule</a>
             |
             <a href="/leagues/<?php echo $league_id ?>/playoffs">Playoffs</a>
+                <?php
+                if ($schedule_url) {
+                    echo '|';
+                    echo '<a href="'. $schedule_url .'">Printable Schedule</a>';
+                }
+                ?>
             </p>
 
             <?php
