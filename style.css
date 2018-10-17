@@ -9,3 +9,11 @@
  License:      GNU General Public License v3 or later
  Text Domain:  wcssaa
 */
+.update-scoring-form {
+    display: none;
+    margin-top: 1em;
+}
+
+.update-scoring-response {
+    margin-top: 1em;
+}

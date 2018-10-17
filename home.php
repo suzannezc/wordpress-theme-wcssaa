@@ -1,14 +1,14 @@
 <?php get_header(); ?>
 
 <div class="container">
-<div class="row">
-<div class="col-sm-12 col-lg-12">
+    <div class="row">
+        <div class="col-sm-12 col-lg-12">
 
 <?php // check if the post has a Post Thumbnail assigned to it.
-if ( has_post_thumbnail() ) {
-echo '<div class="featuredimage">';
-the_post_thumbnail('wrdsb-full-width');
-echo '</div>';
+if (has_post_thumbnail()) {
+    echo '<div class="featuredimage">';
+    the_post_thumbnail('wrdsb-full-width');
+    echo '</div>';
 }
 ?>
 
