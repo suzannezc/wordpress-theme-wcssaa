@@ -10,7 +10,11 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-9 col-lg-9">
+        <?php if (is_user_logged_in()) { ?>
+            <div class="col-sm-12 col-lg-12">
+        <?php } else { ?>
+            <div class="col-sm-8 col-lg-8">
+        <?php } ?>
             <?php
             $meets = Meet::findByDate($today);
             if (count($meets) > 0) {
@@ -238,47 +242,49 @@
 
         </div> <!-- end content area -->
 
-        <div class="col-sm-3 col-lg-3" role="complementary">
-            <div class="sidebar-right widget-area" role="complementary">
-                <?php
-                $the_query = new WP_Query(array(
-                    'category_name'  => 'news',
-                    'posts_per_page' => 1,
-                ));
-                if ($the_query->have_posts()) {
-                    ?>
-                    <div id="news" class="sub-menu-heading">
-                        <span>News</span>
-                    </div>
-                    <div class="textwidget">
-                        <?php
-                        $the_query->the_post();
-                        echo '<h1>';
-                        the_title();
-                        echo '</h1>';
-                        echo '<p>';
-                        the_content(__('Read more'));
-                        echo '</p>';
-                        ?>
-                    </div>
-                    <div style="text-align:right">
-                        <a href="/news">View past news</a>
-                    </div>
+        <?php if (!is_user_logged_in()) { ?>
+            <div class="col-sm-4 col-lg-4" role="complementary">
+                <div class="sidebar-right widget-area" role="complementary">
                     <?php
-                }
-                ?>
+                    $the_query = new WP_Query(array(
+                        'category_name'  => 'news',
+                        'posts_per_page' => 1,
+                    ));
+                    if ($the_query->have_posts()) {
+                        ?>
+                        <div id="news" class="sub-menu-heading">
+                            <span>News</span>
+                        </div>
+                        <div class="textwidget">
+                            <?php
+                            $the_query->the_post();
+                            echo '<h1>';
+                            the_title();
+                            echo '</h1>';
+                            echo '<p>';
+                            the_content(__('Read more'));
+                            echo '</p>';
+                            ?>
+                        </div>
+                        <div style="text-align:right">
+                            <a href="/news">View past news</a>
+                        </div>
+                        <?php
+                    }
+                    ?>
 
-                <div id="twitter" class="sub-menu-heading">
-                    <span>Follow Us</span>
+                    <div id="twitter" class="sub-menu-heading">
+                        <span>Follow Us</span>
+                    </div>
+
+                    <div class="textwidget">
+                        <a class="twitter-timeline" data-height="600" href="https://twitter.com/wcssaa">Tweets by wcssaa</a>
+                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+
                 </div>
-
-                <div class="textwidget">
-                    <a class="twitter-timeline" data-height="600" href="https://twitter.com/wcssaa">Tweets by wcssaa</a>
-                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
-
             </div>
-        </div>
+        <?php } ?>
     </div> <!-- end row -->
 </div> <!-- end container -->
 
